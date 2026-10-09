@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login TikTok</title>
+<style>body{font-family:system-ui,Arial,sans-serif;max-width:760px;margin:40px auto;padding:0 16px;line-height:1.6;color:#1a1a1a;background:#fff}
+code{display:block;word-break:break-all;background:#f2f2f2;padding:12px;border-radius:6px}</style></head>
+<body>
+<h1>Cortes Pixel Perdido</h1>
+<div id="out">Processando...</div>
+<script>
+const p = new URLSearchParams(location.search);
+const out = document.getElementById('out');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+if (p.get('error')) {
+  out.innerHTML = '<p>O login não foi concluído: <b>' + esc(p.get('error')) + '</b></p><p>' + esc(p.get('error_description') || '') + '</p>';
+} else if (p.get('code')) {
+  out.innerHTML = '<p>Login concluído. Copie o código abaixo e cole no programa (ele vale poucos minutos):</p><code>' + esc(p.get('code')) + '</code>';
+} else {
+  out.innerHTML = '<p>Esta página recebe o retorno do login do TikTok.</p>';
+}
+</script>
+</body></html>
